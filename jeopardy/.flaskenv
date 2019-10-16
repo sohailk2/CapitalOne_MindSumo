@@ -1,1 +1,2 @@
 FLASK_APP=runSite.py
+export FLASK_ENV=development

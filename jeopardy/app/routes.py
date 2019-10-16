@@ -1,10 +1,12 @@
-from flask import render_template
+from flask import render_template, flash, redirect, url_for
 from app import app
+
+# https://www.dataquest.io/blog/python-api-tutorial/ THIS IS HOW TO GET THE JSON CONTENT AND STUFF
 
 @app.route('/')
 @app.route('/index')
 def index():
-    user = {'username': 'Miguel'}
+    user = {'username': 'JACK'}
     posts = [
         {
             'author': {'username': 'John'},
@@ -16,3 +18,11 @@ def index():
         }
     ]
     return render_template('index.html', title='Home', user=user, posts=posts)
+
+@app.route('/home')
+def home():
+    return render_template('home.html', title='Home')
+
+@app.route('/viewQuestions')
+def viewQuestions():
+    return render_template('viewQuestions.html', title='Home')
