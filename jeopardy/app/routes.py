@@ -52,8 +52,15 @@ def viewQuestions():
     # now use the jservice to get the questions with those specifications every thing in here
     query = []
 
+    # paginaton
+    if (page == None):
+        page = 0
+    else:
+        page = int(page)
+    
+    if (page > len(categoryIds) - 1):
+        query = []
+    else:
+        query = query + requests.get("http://jservice.io/api/clues?category={}".format(categoryIds[page]['id'])).json()
 
-    for categoryId in categoryIds:
-        query = query + requests.get("http://jservice.io/api/clues?category={}".format(categoryId['id'])).json()
-        
     return render_template('viewQuestions.html', title='Search Questons', results = query)
