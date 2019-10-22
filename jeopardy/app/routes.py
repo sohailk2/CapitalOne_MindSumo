@@ -1,4 +1,4 @@
-from flask import render_template, flash, redirect, url_for
+from flask import render_template, flash, redirect, url_for, request
 from app import app
 
 # https://www.dataquest.io/blog/python-api-tutorial/ THIS IS HOW TO GET THE JSON CONTENT AND STUFF
@@ -25,4 +25,10 @@ def home():
 
 @app.route('/viewQuestions')
 def viewQuestions():
+
+    # can add a loading screen before this stuff in html from home page to make it look cool
+    
+    category = request.args.get('category')
+    print(category)
+
     return render_template('viewQuestions.html', title='Home')
