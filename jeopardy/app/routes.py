@@ -2,6 +2,10 @@ from flask import render_template, flash, redirect, url_for, request
 from app import app
 import json
 import requests
+from flask_login import current_user, login_user, logout_user, login_required
+from app.models import User
+from werkzeug.urls import url_parse
+
 
 
 # https://www.dataquest.io/blog/python-api-tutorial/ THIS IS HOW TO GET THE JSON CONTENT AND STUFF
@@ -13,27 +17,41 @@ categoryList = None
 with open('app/data/categoryListOne') as json_file:
     categoryList = json.load(json_file)
 
-@app.route('/')
-@app.route('/index')
-def index():
-    user = {'username': 'JACK'}
-    posts = [
-        {
-            'author': {'username': 'John'},
-            'body': 'Beautiful day in Portland!'
-        },
-        {
-            'author': {'username': 'Susan'},
-            'body': 'The Avengers movie was so cool!'
-        }
-    ]
-    return render_template('index.html', title='Home', user=user, posts=posts)
+@app.route('/', methods = ['GET', 'POST'])
+@app.route('/index', methods = ['GET', 'POST'])
+def login():
+    if current_user.is_authenticated:
+        return redirect(url_for('home'))
+
+
+    if request.method == 'POST':
+        print(request.form.get('username'))
+        
+        user = User.query.filter_by(username=request.form.get('username')).first()
+
+        if user is None or not user.check_password(request.form.get('password')):
+            flash('Invalid username or password')
+            return redirect(url_for('login'))
+        login_user(user)
+        return redirect(url_for('home'))
+
+    
+    
+    return render_template('login.html', title='Sign In')
+
+@app.route('/logout')
+def logout():
+    logout_user()
+    return redirect(url_for('login'))
+
 
 @app.route('/home')
+@login_required
 def home():
     return render_template('home.html', title='Home')
 
 @app.route('/viewQuestions')
+@login_required
 def viewQuestions():
 
     # can add a loading screen before this stuff in html from home page to make it look cool
@@ -61,6 +79,11 @@ def viewQuestions():
     if (page > len(categoryIds) - 1):
         query = []
     else:
-        query = query + requests.get("http://jservice.io/api/clues?category={}".format(categoryIds[page]['id'])).json()
+        result = requests.get("http://jservice.io/api/clues?category={}".format(categoryIds[page]['id'])).json()
+        # do stuff to the results here
+        # removing nulls and stuff
+        # format date?
+        query = query + result
 
+    
     return render_template('viewQuestions.html', title='Search Questons', results = query)

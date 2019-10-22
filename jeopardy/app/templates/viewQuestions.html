@@ -12,6 +12,9 @@ up here add a drop down list that contains a list of all the different categorry
 
         <div class="card" style="margin-left: 5%; margin-right: 5%; margin-bottom: 1%;">
             <div class="card-header">
+                <h5 class="card-title">Category: {{ question.category.title }}</h5>
+                <h6 class="card-title">Air-Date: {{ question.airdate }}</h6>
+
                 <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample"
                     aria-expanded="false" aria-controls="collapseExample">
                     Show More Info
