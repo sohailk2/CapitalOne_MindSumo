@@ -5,6 +5,9 @@ import requests
 from flask_login import current_user, login_user, logout_user, login_required
 from app.models import User
 from werkzeug.urls import url_parse
+from app.models import User, Question
+from app import db
+import ast
 
 
 
@@ -44,15 +47,47 @@ def logout():
     logout_user()
     return redirect(url_for('login'))
 
+@app.route('/search')
+@login_required
+def search():
+    return render_template('search.html', title='Search')
 
 @app.route('/home')
 @login_required
 def home():
     return render_template('home.html', title='Home')
 
-@app.route('/viewQuestions')
+@app.route('/viewFavorites', methods = ['GET', 'POST'])
+@login_required
+def viewFavorites():
+
+    favorites = Question.query.filter_by(user_id=current_user.id).all()
+
+    # for each one of these things in here i need to convert to json
+    for i in range(0, len(favorites)):
+        favorites[i] = ast.literal_eval(favorites[i].data)
+
+    return render_template('viewFavorites.html', title="Favorites", results = favorites)
+
+@app.route('/viewQuestions', methods = ['GET', 'POST'])
 @login_required
 def viewQuestions():
+
+    if request.method == 'POST':
+        # first check if this is already in favorites
+
+        questionQuery = Question.query.filter_by(data=request.form.get('data')).all()
+        print(questionQuery)
+        if (len(questionQuery) == 0):
+            # add to the database
+            q = Question(data=request.form.get('data'), author=current_user)
+            db.session.add(q)
+            db.session.commit()
+            # print added to favorites
+            print("ADDED TO FAVORITES")
+
+        # return redirect(url_for('home'))
+
 
     # can add a loading screen before this stuff in html from home page to make it look cool
     

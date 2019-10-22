@@ -14,8 +14,7 @@ up here add a drop down list that contains a list of all the different categorry
         <div class="card" style="margin-left: 5%; margin-right: 5%; margin-bottom: 1%;">
             <div class="card-header">
                 
-                <!-- <h5 class="card-title">Category: {{ question.category.title }}</h5>
-                <h6 class="card-title">Air-Date: {{ question.airdate }}</h6> -->
+                
 
                 <h1><span class="badge badge-secondary">{{ question.category.title }}</span></h1>
 
@@ -24,23 +23,11 @@ up here add a drop down list that contains a list of all the different categorry
 
 
 
-                <!-- <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample"
-                    aria-expanded="false" aria-controls="collapseExample">
-                    Show More Info
-                </button> -->
-
             </div>
             <div class="collapse show" id="collapseExample">
                 <div class="card-body">
                     <h5 class="card-title">{{ question.question }}</h5>
                     <p class="card-text">{{question.answer}}</p>
-
-
-                    <form method="post">
-                        <input type="hidden" name="data" value="{{ question }}">
-                        <button type="submit" class="btn btn-primary">Add to Favorites</button>
-                    </form>
-
 
                 </div>
             </div>
