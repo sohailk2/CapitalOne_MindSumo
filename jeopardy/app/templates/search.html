@@ -3,8 +3,6 @@
 {% block content %}
 
 
-MYABE HAVE SOMETHING THAT SAYS "SURPRISE ME WITH SOME RANDOM QUESTIONS"
-
 <div class="card centerCenter" style="width: 60%; top:40%;">
     <div class="card-header text-center">
         <h1>Search For Questions</h1>
@@ -17,7 +15,7 @@ MYABE HAVE SOMETHING THAT SAYS "SURPRISE ME WITH SOME RANDOM QUESTIONS"
 
             <div class="form-group">
                 <label for="exampleInputEmail1">Enter a Category</label>
-                <input required type="text" class="form-control" name="username" aria-describedby="emailHelp"
+                <input required type="text" class="form-control" name="category" aria-describedby="emailHelp"
                     placeholder="Example: 'Movies'">
                     <div class="invalid-feedback">
                             Fill out
@@ -25,13 +23,13 @@ MYABE HAVE SOMETHING THAT SAYS "SURPRISE ME WITH SOME RANDOM QUESTIONS"
             </div>
 
             <label>Value</label>
-            <select class="custom-select">
+            <select class="custom-select" name="pointValue">
                 <option value="0">Any</option>
-                <option value="1">100</option>
-                <option value="2">200</option>
-                <option value="3">300</option>
-                <option value="4">400</option>
-                <option value="5">500</option>
+                <option value="200">200</option>
+                <option value="400">400</option>
+                <option value="600">600</option>
+                <option value="800">800</option>
+                <option value="1000">1000</option>
             </select>
 
             <br><br>
@@ -57,9 +55,9 @@ MYABE HAVE SOMETHING THAT SAYS "SURPRISE ME WITH SOME RANDOM QUESTIONS"
 
             <label>Select a Date Range</label><br>
 
-            <input type="text" disabled class="form-control" name="datetimes">
+            <input type="text" class="form-control" name="datetimes" id="datePicker">
             <span class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                <input class="form-check-input" type="checkbox" value="" id="defaultCheck1" onclick="document.getElementById('datePicker').disabled = !document.getElementById('datePicker').disabled;">
                 <label class="form-check-label" for="defaultCheck1">
                     Disable Range
                 </label>

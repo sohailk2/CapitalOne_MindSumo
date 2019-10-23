@@ -1,0 +1,106 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+
+<script>
+
+    var categoriesAdded = []
+
+    var listTemplate = '<li class="list-group-item">{}</li>'
+
+    function addToCategoryList() {
+
+        toAdd = document.getElementById("toAddBox").value;
+        toAdd.trim();
+
+        if (categoriesAdded.includes(toAdd) == false && toAdd != "") {
+            categoriesAdded.push(toAdd);
+            //alert(toAdd);
+            document.getElementById("categoryList").innerHTML += listTemplate.replace("{}", toAdd);
+
+        }
+    }
+
+    $(document).ready(function () {
+        var input = document.getElementById("toAddBox");
+
+        input.addEventListener("keyup", function (event) {
+            if (event.keyCode === 13) {
+                event.preventDefault();
+                addToCategoryList()
+            }
+        });
+    });
+
+
+    function validateForm() {
+        
+        //
+
+        return false;
+    }
+
+    function generateBoard() {
+
+        if (categoriesAdded.length >= 3 && categoriesAdded.length <= 6 ) {
+
+        } else {
+            alert("Please Select Between 3 to 6 Categories to Generate Board");
+        }
+
+    }
+
+
+
+</script>
+
+<div class="card centerCenter">
+    <div class="card-header">
+        <h1>Setup Your Jeopardy Game Here</h1>
+    </div>
+    <div class="card-body">
+
+
+        <h6>Add some categories to use in your jeopardy game here!
+            Minimum 3 maximum 6 Categories</h6>
+
+
+        <div class="form-inline">
+            <label for="inputPassword2" class="sr-only">Password</label>
+            <input id="toAddBox" style="width:50%" type="text" class="form-control" id="inputPassword2"
+                placeholder="Search For Category">
+            <button style="margin-left: 10px;" type="" class="btn btn-primary" onclick="addToCategoryList()">Add</button>
+
+        </div>
+
+
+
+        <ul style="margin-top:20px;" class="list-group" id="categoryList">
+            <!-- <li class="list-group-item">Cras justo odio</li> -->
+        </ul>
+
+
+
+    </div>
+
+    <div class="card-footer">
+        <form method="POST" onsubmit="return validateForm()">
+            <input type="hidden" id="data" name="data" value="['movies','cars']">
+            <input type="hidden" id="boardType" name="boardType" value="generate">
+            <button type="submit" onclick="generateBoard()" class="btn btn-primary">Generate</button>
+            <button type="submit" onclick="randomBoard()" class="btn btn-primary">Random Board</button>
+        </form>
+
+    </div>
+
+
+
+</div>
+</div>
+
+
+
+{% endblock %}

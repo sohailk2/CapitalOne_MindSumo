@@ -61,7 +61,7 @@
                         PLAY JEOPARDY
 
                     </p>
-                    <a href="#" class="card-link">Card link</a>
+                    <button type="button" onclick='window.open("{{url_for("jeopardySetup")}}","_self")' class="btn btn-primary">play</button>
                 </div>
             </div>
         </div>
@@ -69,13 +69,13 @@
         <div class="col-sm">
             <div class="card" style="width: 18rem; height: 80%;">
                 <div class="card-body">
-                    <h5 class="card-title">Search Questions</h5>
+                    <h5 class="card-title">View Favorites</h5>
                     <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
                     <p class="card-text">
 
 
                     </p>
-                    <a href="#" class="card-link">Card link</a>
+                    <button type="button" onclick='window.open("{{url_for('viewFavorites')}}","_self")' class="btn btn-primary">Search</button>
                 </div>
             </div>
         </div>

@@ -47,10 +47,59 @@ def logout():
     logout_user()
     return redirect(url_for('login'))
 
-@app.route('/search')
+@app.route('/search', methods = ['GET', 'POST'])
 @login_required
 def search():
+
+    if request.method == 'POST':
+        category = request.form.get('category')
+        points = request.form.get('pointValue')
+        return redirect(url_for('viewQuestions', category = category, value=points))
+
+
     return render_template('search.html', title='Search')
+
+@app.route('/jeopardySetup', methods = ['GET', 'POST'])
+@login_required
+def jeopardySetup():
+
+    if request.method == 'POST':
+        # get the type random or not
+        gameGenType = request.form.get('boardType')
+
+        if (gameGenType == 'generate'):
+            return url_for(jeopardy, categories = request.form.get('data'))
+
+    return render_template('jeopardySetup.html', title='Setup Game')
+
+@app.route('/jeopardy', methods = ['GET', 'POST'])
+@login_required
+def jeopardy():
+
+    categories = json.loads(request.args.get('categories'))
+
+    gameData = []
+
+    # so for each of these categories return a question
+    if categories != None:
+        for category in categories:
+            gameData.append(getQuestionSet(category))
+
+
+    return render_template('jeopardy.html', title='Setup Game')
+
+def getQuestionSet(category):
+    # first i need to get the id of this question from cat list
+    questionId = list(filter(lambda question: question['title']!= None and category in question['title'], categoryList))
+    if (len(questionId) == 0):
+        return []
+    else:
+        questionSet = questionId[0] # just get the first one 
+        # now get the question data using jservice api
+        apiQuery = "http://jservice.io/api/clues?category={}".format(questionSet['id'])
+
+
+
 
 @app.route('/home')
 @login_required
@@ -93,6 +142,8 @@ def viewQuestions():
     
     category = request.args.get('category')
     page = request.args.get('page')
+    value = request.args.get('value')
+
 
     # so what this page is going to do is just display the results and stuff
     # those elements should have the option to add to saved questions and stuff
@@ -110,11 +161,24 @@ def viewQuestions():
         page = 0
     else:
         page = int(page)
+
+    if (value == None):
+        value = 0
+    else:
+        value = int(value)
     
     if (page > len(categoryIds) - 1):
         query = []
     else:
-        result = requests.get("http://jservice.io/api/clues?category={}".format(categoryIds[page]['id'])).json()
+        apiQuery = "http://jservice.io/api/clues?category={}".format(categoryIds[page]['id'])
+
+        if value != 0:
+            apiQuery += "&value={}".format(value)
+
+        print(apiQuery)
+
+        result = requests.get(apiQuery).json()
+        
         # do stuff to the results here
         # removing nulls and stuff
         # format date?
