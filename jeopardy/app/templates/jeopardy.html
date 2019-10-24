@@ -4,4 +4,45 @@
 
 
 
+
+<table class="table" style="height:100%">
+    <thead>
+        <tr>
+            {% for questionSet in gameData %}
+            {% if questionSet|length > 0 %}
+            <th scope="col">{{questionSet[0]['category']['title']}}</th>
+            {% else %}{% endif %}
+            {% endfor %}
+        </tr>
+    </thead>
+
+    <tbody>
+
+        {% for n in range(5) %}
+        <tr>
+
+            {% for questionSet in gameData %}
+            {% if questionSet|length > 0 %}
+            <td>
+                <div class="card" style="height: 100%;">
+                    <div class="card-body" >
+                        {{questionSet[n]['question']}}
+                    </div>
+                </div>
+            </td>
+            {% else %}{% endif %}
+            {% endfor %}
+
+        </tr>
+        {% endfor %}
+
+    </tbody>
+</table>
+
+<!-- actually just make a bunch of modals? -->
+
+
+
+
+
 {% endblock %}

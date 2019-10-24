@@ -8,6 +8,8 @@ from werkzeug.urls import url_parse
 from app.models import User, Question
 from app import db
 import ast
+import random
+
 
 
 
@@ -86,7 +88,7 @@ def jeopardy():
             gameData.append(getQuestionSet(category))
 
 
-    return render_template('jeopardy.html', title='Setup Game')
+    return render_template('jeopardy.html', title='Setup Game', gameData = gameData)
 
 def getQuestionSet(category):
     # first i need to get the id of this question from cat list
@@ -97,7 +99,22 @@ def getQuestionSet(category):
         questionSet = questionId[0] # just get the first one 
         # now get the question data using jservice api
         apiQuery = "http://jservice.io/api/clues?category={}".format(questionSet['id'])
+        result = requests.get(apiQuery).json()
 
+        return generateQuestions(result)
+
+
+def generateQuestions(questionData):
+    
+    outputData = []
+
+    valueList = [200, 400, 600, 800, 1000]
+
+    for value in valueList:
+        questions = list(filter(lambda question: question['value'] != None and question['value'] == value, questionData))
+        outputData.append(random.choice(questions))
+
+    return outputData
 
 
 
