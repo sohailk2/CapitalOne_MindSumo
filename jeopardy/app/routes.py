@@ -168,7 +168,7 @@ def viewQuestions():
     # first see what the id of the related category is
     categoryIds = None
     if (category != None):
-        categoryIds = list(filter(lambda question: question['title']!= None and category in question['title'], categoryList))
+        categoryIds = list(filter(lambda question: question['title']!= None and category.lower() in question['title'].lower(), categoryList))
 
     # now use the jservice to get the questions with those specifications every thing in here
     query = []
@@ -192,7 +192,7 @@ def viewQuestions():
         if value != 0:
             apiQuery += "&value={}".format(value)
 
-        print(apiQuery)
+        print("API QUERY" + apiQuery)
 
         result = requests.get(apiQuery).json()
         
