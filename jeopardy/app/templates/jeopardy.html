@@ -2,7 +2,13 @@
 
 {% block content %}
 
+<script>
 
+function generateModal(category, points, airdate, clue, answer) {
+
+}
+
+</script>
 
 
 <table class="table" style="height:100%">
@@ -10,7 +16,11 @@
         <tr>
             {% for questionSet in gameData %}
             {% if questionSet|length > 0 %}
-            <th scope="col">{{questionSet[0]['category']['title']}}</th>
+            <th scope="col" style="text-align: center;">
+                <h2>
+                    {{questionSet[0]['category']['title']}}
+                </h2>
+            </th>
             {% else %}{% endif %}
             {% endfor %}
         </tr>
@@ -23,12 +33,17 @@
 
             {% for questionSet in gameData %}
             {% if questionSet|length > 0 %}
-            <td>
-                <div class="card" style="height: 100%;">
-                    <div class="card-body" >
+            <td style="vertical-align: middle; text-align: center;">
+                <!-- <div class="card" style="height: 100%;"> -->
+                    <!-- <div class="card-body">
                         {{questionSet[n]['question']}}
-                    </div>
-                </div>
+                    </div> -->
+
+                    <!-- {{(n + 1) * 200}}
+
+                </div> -->
+                <button type="button" class="btn btn-primary" style="font-size: 300%; padding-top:1.5%; padding-bottom:1.5%; padding-left:5%; padding-right: 5%;">{{(n + 1) * 200}}</button>
+
             </td>
             {% else %}{% endif %}
             {% endfor %}
@@ -39,9 +54,73 @@
     </tbody>
 </table>
 
-<!-- actually just make a bunch of modals? -->
 
 
+<style>
+    .modal-full {
+        min-width: 100%;
+        margin: 0;
+    }
+
+    .modal-full .modal-content {
+        min-height: 100vh;
+    }
+</style>
+
+<a href="#myModal" id="openModal" role="button" class="btn btn-primary" data-toggle="modal" style="display: none;"></a>
+
+<div class="modal" id="myModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-full" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">
+                    <span class="badge badge-primary">the new york times book review</span>
+                    <span class="badge badge-primary">Points: Point Value</span>
+                    <span class="badge badge-primary">AirDate:</span>
+
+                </h2>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body" id="result">
+
+
+                <center>
+                    <div class="card" style="margin-left: 10%; margin-right:10%; margin-bottom: 3%;">
+                        <div class="card-body">
+                            <h1>Clue: <br>The title of this best screenplay winner refers to the pregnant lead character,
+                                not a mythic queen of the heavens</h1>
+                        </div>
+                    </div>
+                </center>
+
+                <center>
+                    <div class="card" style="margin-left: 10%; margin-right:10%; margin-bottom: 3%;">
+                        <div class="card-body">
+                            <h1>Answer: <br>The title of this best screenplay winner refers to the pregnant lead character,
+                                not a mythic queen of the heavens</h1>
+                        </div>
+                    </div>
+                </center>
+
+                <center>
+                    <button type="button" class="btn btn-success" style="font-size: 300%; padding:1.5%;">Show Answer</button>
+                </center>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">OK</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        document.getElementById("openModal").click();
+    });
+</script>
 
 
 

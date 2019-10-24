@@ -18,9 +18,8 @@
 
         if (categoriesAdded.includes(toAdd) == false && toAdd != "") {
             categoriesAdded.push(toAdd);
-            //alert(toAdd);
             document.getElementById("categoryList").innerHTML += listTemplate.replace("{}", toAdd);
-
+            document.getElementById("toAddBox").value = "";
         }
     }
 
@@ -37,7 +36,7 @@
 
 
     function validateForm() {
-        
+
         //
 
         return false;
@@ -45,7 +44,29 @@
 
     function generateBoard() {
 
-        if (categoriesAdded.length >= 3 && categoriesAdded.length <= 6 ) {
+        if (categoriesAdded.length >= 3 && categoriesAdded.length <= 6) {
+
+            url = "{{ url_for('jeopardy') }}";
+
+            url += '?categories=[{}]';
+
+            data = "";
+
+            for (i = 0; i < categoriesAdded.length; i++) {
+                
+                data += '"';
+                data += categoriesAdded[i];
+                data += '"';
+
+                if (i != categoriesAdded.length - 1) {
+                    data += ",";
+                }
+
+            }
+            
+            url = url.replace("{}", data);
+            window.open(url);
+
 
         } else {
             alert("Please Select Between 3 to 6 Categories to Generate Board");
@@ -72,7 +93,8 @@
             <label for="inputPassword2" class="sr-only">Password</label>
             <input id="toAddBox" style="width:50%" type="text" class="form-control" id="inputPassword2"
                 placeholder="Search For Category">
-            <button style="margin-left: 10px;" type="" class="btn btn-primary" onclick="addToCategoryList()">Add</button>
+            <button style="margin-left: 10px;" type="" class="btn btn-primary"
+                onclick="addToCategoryList()">Add</button>
 
         </div>
 
