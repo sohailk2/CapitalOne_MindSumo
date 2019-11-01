@@ -53,6 +53,10 @@ def login():
             # else then make the account
             user = User(username=request.form.get('username'))
             user.set_password(request.form.get('password'))
+            db.session.add(user)
+            db.session.commit()
+            flash('Congratulations, {} is now a registered user!'.format(request.form.get('username')))
+            return redirect(url_for('login'))
     
     
     return render_template('login.html', title='Sign In')

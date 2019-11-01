@@ -52,12 +52,10 @@
         }
     </style>
 
-    <div id="outer" style="margin-top: 1%;">
+    <!-- <div id="outer" style="margin-top: 1%;">
         <div id="inner">
 
-            <!-- <div class="card" style="padding: 10px; ">
-                
-            </div> -->
+            
 
             <div class="">
                     <button style="font-size: 150%" class="btn btn-primary" onclick='window.open("{{ url_for('home') }}","_self")'>Home</button>
@@ -73,7 +71,39 @@
 
         </div>
 
-    </div>
+    </div> -->
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="#">Capital One Mind Sumo 2019 - Jeopardy</a>
+
+            <button class="btn btn-outline-success" type="button" onclick='window.open("{{ url_for('home') }}","_self")'>Home</button>
+
+            <div class="collapse navbar-collapse" id="navbarText">
+              <ul class="navbar-nav mr-auto">
+                <li class="nav-item active" style="margin-left: 5px; margin-right: 5px;">
+                    <button class="btn btn-outline-success" type="button" onclick='window.open("{{ url_for('search') }}","_self")'>Search</button>
+                </li>
+
+                <li class="nav-item" style="margin-left: 5px; margin-right: 5px;">
+                        <button class="btn btn-outline-success" type="button" onclick='window.open("{{ url_for('jeopardySetup') }}","_self")'>Play</button>
+                </li>
+
+                <li class="nav-item" style="margin-left: 5px; margin-right: 5px;">
+                        <button class="btn btn-outline-success" type="button" onclick='window.open("{{ url_for('viewFavorites') }}","_self")'>View Favorites</button>
+                </li>
+              </ul>
+
+              <span class="navbar-text">
+                {% if current_user.is_anonymous %}
+                    <!-- <button style="" class="btn btn-outline-success" onclick='window.open("{{ url_for('login') }}","_self")'>Login</button> -->
+                    {% else %}
+                    Hi <b>{{current_user.username}}</b>
+                    <button style="" class="btn btn-outline-danger" onclick='window.open("{{ url_for('logout') }}","_self")'>Logout</button>
+                    {% endif %}
+
+              </span>
+            </div>
+          </nav>
 
     {% block content %}{% endblock %}
 </body>
