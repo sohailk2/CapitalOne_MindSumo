@@ -2,10 +2,18 @@
 
 {% block content %}
 
+<style>
+    body {
+        background-color: #E8A87C;
+        transition: background-color 0.5s ease;
 
-<div class="card centerCenter" style="width: 60%; top:40%;">
+    }
+</style>
+
+<div class="card centerCenter" style="width: 60%;">
     <div class="card-header text-center">
         <h1>Search For Questions</h1>
+        <h5>Over <i>18,000</i> Categories Indexed</h5>
     </div>
     <div class="card-body">
 
@@ -17,9 +25,9 @@
                 <label for="exampleInputEmail1">Enter a Category</label>
                 <input required type="text" class="form-control" name="category" aria-describedby="emailHelp"
                     placeholder="Example: 'Movies'">
-                    <div class="invalid-feedback">
-                            Fill out
-                          </div>
+                <div class="invalid-feedback">
+                    Fill out
+                </div>
             </div>
 
             <label>Value</label>
@@ -36,28 +44,32 @@
 
             <script>
                 $(function () {
-                    $("#datepicker").datepicker();
+                    $("#datepicker").daterangepicker();
                 });
 
                 //for the date range
                 $(function () {
                     $('input[name="datetimes"]').daterangepicker({
                         timePicker: true,
-                        startDate: moment().startOf('hour'),
-                        endDate: moment().startOf('hour').add(32, 'hour'),
+
                         locale: {
-                            format: 'M/DD hh:mm A'
+                            format: 'M/DD/YYYY'
                         }
                     });
+                });
+
+                $("#defaultCheck1").ready(function() {
+                    document.getElementById("defaultCheck1").click();
                 });
             </script>
 
 
-            <label>Select a Date Range</label><br>
+            <label>Select a Date Range (You Can Also Directly Edit the text without UI)</label><br>
 
             <input type="text" class="form-control" name="datetimes" id="datePicker">
             <span class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="defaultCheck1" onclick="document.getElementById('datePicker').disabled = !document.getElementById('datePicker').disabled;">
+                <input class="form-check-input" type="checkbox" value="" id="defaultCheck1"
+                 onclick="document.getElementById('datePicker').disabled = !document.getElementById('datePicker').disabled;">
                 <label class="form-check-label" for="defaultCheck1">
                     Disable Range
                 </label>

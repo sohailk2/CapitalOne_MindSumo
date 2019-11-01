@@ -40,19 +40,41 @@
 </head>
 
 <body>
-    <div>Microblog: 
-    
-        <a href="{{ url_for('home') }}">Home</a>
 
-        {% if current_user.is_anonymous %}
-        <a href="{{ url_for('login') }}">Login</a>
-        {% else %}
-        <a href="{{ url_for('logout') }}">Logout</a>
-        {% endif %}
+    <style>
+        #outer {
+            width: 100%;
+            text-align: center;
+        }
+
+        #inner {
+            display: inline-block;
+        }
+    </style>
+
+    <div id="outer" style="margin-top: 1%;">
+        <div id="inner">
+
+            <!-- <div class="card" style="padding: 10px; ">
+                
+            </div> -->
+
+            <div class="">
+                    <button style="font-size: 150%" class="btn btn-primary" onclick='window.open("{{ url_for('home') }}","_self")'>Home</button>
+                    
     
+                    {% if current_user.is_anonymous %}
+                    <button style="font-size: 150%" class="btn btn-primary" onclick='window.open("{{ url_for('login') }}","_self")'>Login</button>
+                    {% else %}
+                    <button style="font-size: 150%" class="btn btn-primary" onclick='window.open("{{ url_for('logout') }}","_self")'>Logout</button>
+                    {% endif %}
+            </div>
+
+
+        </div>
+
     </div>
 
-    <hr>
     {% block content %}{% endblock %}
 </body>
 

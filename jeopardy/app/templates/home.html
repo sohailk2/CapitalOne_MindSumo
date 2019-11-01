@@ -2,7 +2,36 @@
 
 {% block content %}
 
-<a href="{{url_for('viewQuestions', category='cat1')}}">View Questions</a>
+<style>
+    body {
+        background-color: #85dcb8;
+        transition: background-color 0.5s ease;
+
+    }
+</style>
+
+<script>
+
+    function pageAnimation(nextPage) {
+
+        if (nextPage == "search") {
+
+           
+
+            document.body.style.backgroundColor = "#E8A87C";
+
+    
+    
+            $("#menu").fadeOut(duration = 200, queue=false, function() {
+                window.open("{{url_for("search")}}","_self")
+            });
+        }
+
+        
+
+    }
+
+</script>
 
 <!-- Button trigger modal -->
 <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
@@ -31,20 +60,25 @@
     </div>
 </div>
 
-<div class="container centerCenter">
+<div id="menu" class="container centerCenter">
     <div class="row">
         <div class="col-sm">
 
-            <div class="card" style="width: 18rem; height: 80%;">
-                <div class="card-body">
-                    <h5 class="card-title">Search Questions</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                    <p class="card-text">
 
+            <div class="card">
+                <div class="card-header">
+                    Browse Question Database
+                </div>
+                <div class="card-body">
+                    
+                    <h6 class="card-subtitle mb-2 text-muted">Instructions:</h6>
+                    <p class="card-text">
+aa
 
                     </p>
 
-                    <button type="button" onclick='window.open("{{url_for("search")}}","_self")' class="btn btn-primary">Search</button>
+                    <button type="button" onclick='pageAnimation("search");'
+                        class="btn btn-primary">Search</button>
 
                 </div>
             </div>
@@ -52,32 +86,47 @@
         </div>
 
         <div class="col-lg">
-            <div class="card" style="width: 18rem; height: 80%;">
-                <div class="card-body">
-                    <h5 class="card-title">Search Questions</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                    <p class="card-text">
+                <div class="card">
+                        <div class="card-header">
+                                Play Jeopardy
+                        </div>
+                        <div class="card-body">
+                                <h5 class="card-title">Search Questions</h5>
+                                <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+                                <p class="card-text">
+            
+                                   
+            
+                                </p>
+                                <button type="button" onclick='window.open("{{url_for("jeopardySetup")}}","_self")'
+                                    class="btn btn-primary">play</button>
+        
+                        </div>
+                    </div>
 
-                        PLAY JEOPARDY
-
-                    </p>
-                    <button type="button" onclick='window.open("{{url_for("jeopardySetup")}}","_self")' class="btn btn-primary">play</button>
-                </div>
-            </div>
+            
         </div>
 
         <div class="col-sm">
-            <div class="card" style="width: 18rem; height: 80%;">
-                <div class="card-body">
-                    <h5 class="card-title">View Favorites</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                    <p class="card-text">
 
+                <div class="card">
+                        <div class="card-header">
+                                View Favorites
+                        </div>
+                        <div class="card-body">
+                                <h5 class="card-title">View Favorites</h5>
+                                <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+                                <p class="card-text">
+            
+            
+                                </p>
+                                <button type="button" onclick='window.open("{{url_for('viewFavorites')}}","_self")'
+                                    class="btn btn-primary">Search</button>
+        
+                        </div>
+                    </div>
 
-                    </p>
-                    <button type="button" onclick='window.open("{{url_for('viewFavorites')}}","_self")' class="btn btn-primary">Search</button>
-                </div>
-            </div>
+            
         </div>
     </div>
 </div>

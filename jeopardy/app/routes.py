@@ -9,6 +9,7 @@ from app.models import User, Question
 from app import db
 import ast
 import random
+import datetime
 
 
 
@@ -56,6 +57,23 @@ def search():
     if request.method == 'POST':
         category = request.form.get('category')
         points = request.form.get('pointValue')
+
+        datetimes = request.form.get('datetimes')
+        print(request.form)
+
+        if datetimes != None:
+            # parse out the dates
+            # get proper format
+            # and then pass in to query
+            date1 = (datetimes.split(' - '))[0]
+            date1 = datetime.datetime.strptime(date1, '%m/%d/%Y')
+
+            date2 = (datetimes.split(' - '))[0]
+            date2 = datetime.datetime.strptime(date2, '%m/%d/%Y')
+            return redirect(url_for('viewQuestions', category = category, value=points, maxdate=date1, mindate=date2))
+            
+
+
         return redirect(url_for('viewQuestions', category = category, value=points))
 
 
@@ -92,7 +110,7 @@ def jeopardy():
 
 def getQuestionSet(category):
     # first i need to get the id of this question from cat list
-    questionId = list(filter(lambda question: question['title']!= None and category in question['title'], categoryList))
+    questionId = list(filter(lambda question: question['title']!= None and category.lower() in question['title'].lower(), categoryList))
     if (len(questionId) == 0):
         return []
     else:
@@ -112,7 +130,8 @@ def generateQuestions(questionData):
 
     for value in valueList:
         questions = list(filter(lambda question: question['value'] != None and question['value'] == value, questionData))
-        outputData.append(random.choice(questions))
+        if (len(questions) != 0):
+            outputData.append(random.choice(questions))
 
     return outputData
 
@@ -160,6 +179,8 @@ def viewQuestions():
     category = request.args.get('category')
     page = request.args.get('page')
     value = request.args.get('value')
+    maxdate = request.args.get('maxdate')
+    mindate = request.args.get('mindate')
 
 
     # so what this page is going to do is just display the results and stuff
@@ -183,6 +204,14 @@ def viewQuestions():
         value = 0
     else:
         value = int(value)
+
+    if (maxdate == None):
+        maxDate = ""
+    
+    if (mindate == None):
+        mindate = ""
+
+    
     
     if (page > len(categoryIds) - 1):
         query = []
@@ -191,6 +220,10 @@ def viewQuestions():
 
         if value != 0:
             apiQuery += "&value={}".format(value)
+
+
+        apiQuery += "&min_date={}".format(mindate)
+        apiQuery += "&max_date={}".format(maxdate)
 
         print("API QUERY" + apiQuery)
 

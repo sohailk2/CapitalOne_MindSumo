@@ -2,10 +2,35 @@
 
 {% block content %}
 
+<style>
+        body {
+	margin: 0;
+	width: 100%;
+	height: 100vh;	
+	background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+	background-size: 400% 400%;
+	animation: gradientBG 15s ease infinite;
+}
+
+@keyframes gradientBG {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
+.roundedBorders {
+  border-radius: 2.5%;
+}
+</style>
 
 
-
-<div class="card centerCenter" style="width: 40%;">
+<div class="card centerCenter roundedBorders" style="width: 40%; opacity: 1;">
     <div class="card-body">
       <h5 class="card-title">Welcome To Jeopardy</h5>
       <h6 class="card-subtitle mb-2 text-muted">Username: user, Password: password</h6>
@@ -26,6 +51,8 @@
         </div>
         
         <button type="submit" class="btn btn-primary">Login</button>
+
+        add like a welcome page with capital one summut logo explaining the app and stuff maybe?
 
        
 
