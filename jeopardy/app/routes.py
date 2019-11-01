@@ -70,7 +70,7 @@ def search():
 
             date2 = (datetimes.split(' - '))[0]
             date2 = datetime.datetime.strptime(date2, '%m/%d/%Y')
-            return redirect(url_for('viewQuestions', category = category, value=points, maxdate=date1, mindate=date2))
+            return redirect(url_for('viewQuestions', category = category, value=points,  mindate=date2, maxdate=date1))
             
 
 
@@ -104,6 +104,8 @@ def jeopardy():
     if categories != None:
         for category in categories:
             gameData.append(getQuestionSet(category))
+
+    print(gameData[0][0]['answer'])
 
 
     return render_template('jeopardy.html', title='Setup Game', gameData = gameData)
@@ -206,7 +208,7 @@ def viewQuestions():
         value = int(value)
 
     if (maxdate == None):
-        maxDate = ""
+        maxdate = ""
     
     if (mindate == None):
         mindate = ""

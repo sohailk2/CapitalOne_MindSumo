@@ -6,6 +6,17 @@
 
 function generateModal(category, points, airdate, clue, answer) {
 
+    
+
+    document.getElementById("category").innerHTML = category;
+    //document.getElementById("openModal").innerHTML = category;
+    document.getElementById("airdate").innerHTML = airdate;
+    document.getElementById("clue").innerHTML = clue;
+    document.getElementById("answer").innerHTML = answer;
+
+
+    document.getElementById("openModal").click();
+
 }
 
 </script>
@@ -42,7 +53,7 @@ function generateModal(category, points, airdate, clue, answer) {
                     <!-- {{(n + 1) * 200}}
 
                 </div> -->
-                <button type="button" class="btn btn-primary" style="font-size: 300%; padding-top:1.5%; padding-bottom:1.5%; padding-left:5%; padding-right: 5%;">{{(n + 1) * 200}}</button>
+                <button type="button" onclick="generateModal( '{{questionSet[0]['category']['title']}}', {{(n + 1) * 200}} , '{{questionSet[n]['airdate']}}' ,'{{questionSet[n]['question']}}','{{questionSet[n]['answer']}}')" class="btn btn-primary" style="font-size: 300%; padding-top:1.5%; padding-bottom:1.5%; padding-left:5%; padding-right: 5%;">{{(n + 1) * 200}}</button>
 
             </td>
             {% else %}{% endif %}
@@ -74,9 +85,9 @@ function generateModal(category, points, airdate, clue, answer) {
         <div class="modal-content">
             <div class="modal-header">
                 <h2 class="modal-title">
-                    <span class="badge badge-primary">the new york times book review</span>
-                    <span class="badge badge-primary">Points: Point Value</span>
-                    <span class="badge badge-primary">AirDate:</span>
+                    <span class="badge badge-primary">Category:<span id="category"></span></span>
+                    <span class="badge badge-primary" id="points">Points: Point Value</span>
+                    <span class="badge badge-primary">AirDate:<span id="airdate"></span></span>
 
                 </h2>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -89,23 +100,24 @@ function generateModal(category, points, airdate, clue, answer) {
                 <center>
                     <div class="card" style="margin-left: 10%; margin-right:10%; margin-bottom: 3%;">
                         <div class="card-body">
-                            <h1>Clue: <br>The title of this best screenplay winner refers to the pregnant lead character,
-                                not a mythic queen of the heavens</h1>
+                            <h1>Clue: <br>
+                                <span id="clue"></span>
+                            </h1>
                         </div>
                     </div>
                 </center>
 
                 <center>
-                    <div class="card" style="margin-left: 10%; margin-right:10%; margin-bottom: 3%;">
+                    <div id="answerCard" style="display: none;" class="card" style="margin-left: 10%; margin-right:10%; margin-bottom: 3%;">
                         <div class="card-body">
-                            <h1>Answer: <br>The title of this best screenplay winner refers to the pregnant lead character,
-                                not a mythic queen of the heavens</h1>
+                            <h1>Answer: <br> <span id="answer"></span></h1>
                         </div>
                     </div>
+                    <br>
                 </center>
 
                 <center>
-                    <button type="button" class="btn btn-success" style="font-size: 300%; padding:1.5%;">Show Answer</button>
+                    <button type="button" class="btn btn-success" onclick="document.getElementById('answerCard').style.display=''" style="font-size: 300%; padding:1.5%;">Show Answer</button>
                 </center>
 
             </div>
@@ -118,7 +130,7 @@ function generateModal(category, points, airdate, clue, answer) {
 
 <script>
     $(document).ready(function () {
-        document.getElementById("openModal").click();
+        //document.getElementById("openModal").click();
     });
 </script>
 
