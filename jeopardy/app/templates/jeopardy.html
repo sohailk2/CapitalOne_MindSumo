@@ -53,7 +53,7 @@ function generateModal(category, points, airdate, clue, answer) {
                     <!-- {{(n + 1) * 200}}
 
                 </div> -->
-                <button type="button" onclick="generateModal( '{{questionSet[0]['category']['title']}}', {{(n + 1) * 200}} , '{{questionSet[n]['airdate']}}' ,'{{questionSet[n]['question']}}','{{questionSet[n]['answer']}}')" class="btn btn-primary" style="font-size: 300%; padding-top:1.5%; padding-bottom:1.5%; padding-left:5%; padding-right: 5%;">{{(n + 1) * 200}}</button>
+                <button type="button" onclick="generateModal( `{{questionSet[0]['category']['title']}}`, {{(n + 1) * 200}} , `{{questionSet[n]['airdate']}}` ,`{{questionSet[n]['question']}}`,`{{questionSet[n]['answer']}}`)" class="btn btn-primary" style="font-size: 300%; padding-top:1.5%; padding-bottom:1.5%; padding-left:5%; padding-right: 5%;">{{(n + 1) * 200}}</button>
 
             </td>
             {% else %}{% endif %}
@@ -132,6 +132,8 @@ function generateModal(category, points, airdate, clue, answer) {
     $(document).ready(function () {
         //document.getElementById("openModal").click();
     });
+
+    
 </script>
 
 

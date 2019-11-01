@@ -31,16 +31,28 @@ def login():
 
 
     if request.method == 'POST':
-        print(request.form.get('username'))
-        
-        user = User.query.filter_by(username=request.form.get('username')).first()
 
-        if user is None or not user.check_password(request.form.get('password')):
-            flash('Invalid username or password')
-            return redirect(url_for('login'))
-        login_user(user)
-        return redirect(url_for('home'))
+        if request.form.get('formName') == "Login":
+            print(request.form.get('username'))
+            
+            user = User.query.filter_by(username=request.form.get('username')).first()
 
+            if user is None or not user.check_password(request.form.get('password')):
+                flash('Invalid username or password')
+                return redirect(url_for('login'))
+            login_user(user)
+            return redirect(url_for('home'))
+
+        if request.form.get('formName') == "Register":
+             # first check if the name is valid
+            user = User.query.filter_by(username=request.form.get('username')).first()
+            if user is not None:
+                flash('User Name Already Exists. Register with different username.')
+                return redirect(url_for('login'))
+            
+            # else then make the account
+            user = User(username=request.form.get('username'))
+            user.set_password(request.form.get('password'))
     
     
     return render_template('login.html', title='Sign In')
@@ -103,7 +115,9 @@ def jeopardy():
     # so for each of these categories return a question
     if categories != None:
         for category in categories:
-            gameData.append(getQuestionSet(category))
+            newData = getQuestionSet(category)
+            if not (len(newData) < 5):
+                gameData.append(newData)
 
     print(gameData[0][0]['answer'])
 

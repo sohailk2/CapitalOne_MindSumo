@@ -3,81 +3,134 @@
 {% block content %}
 
 <style>
-        body {
-	margin: 0;
-	width: 100%;
-	height: 100vh;	
-	background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
-	background-size: 400% 400%;
-	animation: gradientBG 15s ease infinite;
-}
+  body {
+    margin: 0;
+    width: 100%;
+    height: 100vh;
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    background-size: 400% 400%;
+    animation: gradientBG 10s ease infinite;
+  }
 
-@keyframes gradientBG {
-	0% {
-		background-position: 0% 50%;
-	}
-	50% {
-		background-position: 100% 50%;
-	}
-	100% {
-		background-position: 0% 50%;
-	}
-}
+  @keyframes gradientBG {
+    0% {
+      background-position: 0% 50%;
+    }
 
-.roundedBorders {
-  border-radius: 2.5%;
-}
+    50% {
+      background-position: 100% 50%;
+    }
+
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+  .roundedBorders {
+    border-radius: 2.5%;
+  }
 </style>
 
+<!-- Modal -->
+<div class="modal fade" style="" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalCenterTitle">New User Registration</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          
 
-<div class="card centerCenter roundedBorders" style="width: 40%; opacity: 1;">
-    <div class="card-body">
-      <h5 class="card-title">Welcome To Jeopardy</h5>
-      <h6 class="card-subtitle mb-2 text-muted">Username: user, Password: password</h6>
+            <form method="post">
 
-      
+                <span id="login_form">
+                  <input type="hidden" name="formName" value="Register">
+          
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">New Username:</label>
+                    <input type="text" class="form-control" name="username" aria-describedby="emailHelp" placeholder="Enter email"
+                      value="user">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">New Password:</label>
+                    <input type="password" class="form-control" name="password" placeholder="Password" value="password">
+                  </div>
+          
+                  <button type="submit" class="btn btn-success">Register</button>
+                </span>
+          
+          
+              </form>
 
-      <form method="post">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
+<div class="card centerCenter border border-secondary" style="width: 40%; opacity: 1; border-width: 5px !important;">
+  <div class="card-body">
+    <h5 class="card-title">Welcome To Jeopardy</h5>
+    <h6 class="card-subtitle mb-2 text-muted">DEFAULTS-> Username: user, Password: password</h6>
+
+
+
+    <form method="post">
+
+      <span id="login_form">
         <input type="hidden" name="formName" value="Login">
 
         <div class="form-group">
           <label for="exampleInputEmail1">Username</label>
-          <input type="text" class="form-control" name="username" aria-describedby="emailHelp" placeholder="Enter email" value="user">
+          <input type="text" class="form-control" name="username" aria-describedby="emailHelp" placeholder="Enter email"
+            value="user">
         </div>
         <div class="form-group">
           <label for="exampleInputPassword1">Password</label>
           <input type="password" class="form-control" name="password" placeholder="Password" value="password">
         </div>
-        
-        <button type="submit" class="btn btn-primary">Login</button>
 
-        add like a welcome page with capital one summut logo explaining the app and stuff maybe?
+        <button type="submit" class="btn btn-success">Login</button>
+      </span>
 
-       
+      <button type="button" data-toggle="modal" data-target="#exampleModal" class="btn btn-info">Register</button>
 
-        <!-- <form method="post">
+    </form>
+
+
+
+
+
+    <!-- add like a welcome page with capital one summut logo explaining the app and stuff maybe? -->
+
+    
+
+    <!-- <form method="post">
             <input type="hidden" name="formName" value="Register">
             <button type="submit" class="btn btn-primary">Register</button>
         </form> -->
 
-        <br>to do add a register field
+    <!-- <br>to do add a register field -->
 
-      </form>
 
-      {% with messages = get_flashed_messages() %}
-      {% if messages %}
-        
-        {% for message in messages %}
-          <div class="alert alert-danger" role="alert">
-              {{ message }}
-          </div>              
-        {% endfor %}
-        
-      {% endif %}
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+
+    {% for message in messages %}
+    <div class="alert alert-danger" role="alert">
+      {{ message }}
+    </div>
+    {% endfor %}
+
+    {% endif %}
     {% endwith %}
 
-    </div>
+  </div>
 </div>
 
 {% endblock %}
