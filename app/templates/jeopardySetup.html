@@ -74,6 +74,9 @@
 
     }
 
+    function randomBoard() {
+        window.open("{{ url_for('jeopardy', random = '') }}","_self");
+    }
 
 
 </script>
@@ -113,7 +116,7 @@
             <input type="hidden" id="data" name="data" value="['movies','cars']">
             <input type="hidden" id="boardType" name="boardType" value="generate">
             <button type="submit" onclick="generateBoard()" class="btn btn-primary">Generate</button>
-            <button type="submit" onclick="randomBoard()" class="btn btn-primary">Random Board</button>
+            <button type="" onclick="randomBoard()" class="btn btn-primary">Random Board</button>
         </form>
 
     </div>

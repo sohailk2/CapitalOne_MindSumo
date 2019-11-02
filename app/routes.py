@@ -109,10 +109,15 @@ def jeopardySetup():
 @login_required
 def jeopardy():
 
-    categories = json.loads(request.args.get('categories'))
+    if request.args.get('random') != None:
+        categories = getRandomCategories(5)
+    else:
+        categories = json.loads(request.args.get('categories'))
 
     gameData = []
 
+    print(categories)
+    
     # so for each of these categories return a question
     if categories != None:
         for category in categories:
@@ -138,6 +143,14 @@ def getQuestionSet(category):
 
         return generateQuestions(result)
 
+
+def getRandomCategories(numCats):
+    categories = []
+    categoryIds = random.sample(categoryList, numCats)
+    for cat in categoryIds:
+        categories.append(cat['title'])
+    
+    return categories
 
 def generateQuestions(questionData):
     
