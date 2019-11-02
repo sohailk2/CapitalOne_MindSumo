@@ -22,7 +22,7 @@ function generateModal(category, points, airdate, clue, answer) {
 </script>
 
 
-<table class="table" style="height:100%">
+<table class="table" style="height:85%">
     <thead>
         <tr>
             {% for questionSet in gameData %}
@@ -44,7 +44,7 @@ function generateModal(category, points, airdate, clue, answer) {
 
             {% for questionSet in gameData %}
             {% if questionSet|length > 0 %}
-            <td style="vertical-align: middle; text-align: center;">
+            <td style="vertical-align: middle; text-align: center; width: {{100/(questionSet|length)}}%">
                 <!-- <div class="card" style="height: 100%;"> -->
                     <!-- <div class="card-body">
                         {{questionSet[n]['question']}}
