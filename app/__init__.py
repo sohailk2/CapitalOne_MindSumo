@@ -38,5 +38,5 @@ if not app.debug and not app.testing:
             # app.logger.addHandler(file_handler)
             pass
 
-        app.logger.setLevel(logging.INFO)
+        # app.logger.setLevel(logging.INFO)
         app.logger.info('Microblog startup')
