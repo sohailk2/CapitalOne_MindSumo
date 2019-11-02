@@ -11,9 +11,6 @@ import ast
 import random
 import datetime
 
-
-
-
 # https://www.dataquest.io/blog/python-api-tutorial/ THIS IS HOW TO GET THE JSON CONTENT AND STUFF
 
 
@@ -202,6 +199,7 @@ def viewQuestions():
     maxdate = request.args.get('maxdate')
     mindate = request.args.get('mindate')
 
+    
 
     # so what this page is going to do is just display the results and stuff
     # those elements should have the option to add to saved questions and stuff
@@ -232,6 +230,10 @@ def viewQuestions():
         mindate = ""
 
     
+    
+    # do the random thing
+    if request.args.get("random") != None:
+        categoryIds = random.sample(categoryList, 50)
     
     if (page > len(categoryIds) - 1):
         query = []

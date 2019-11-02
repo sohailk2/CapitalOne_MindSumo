@@ -10,6 +10,14 @@
     }
 </style>
 
+<script>
+
+    function randomQuestion() {
+        window.open("{{ url_for('viewQuestions', random = '') }}","_self");
+    }
+
+</script>
+
 <div class="card centerCenter" style="width: 60%;">
     <div class="card-header text-center">
         <h1>Search For Questions</h1>
@@ -78,7 +86,7 @@
             <br><br>
 
             <button type="submit" class="btn btn-primary">Search</button>
-            <button type="submit" class="btn btn-primary">Give Me Some Ranom Question</button>
+            <button type="button" class="btn btn-primary" onclick="randomQuestion()" >Give Me Some Random Questions</button>
 
 
         </form>
