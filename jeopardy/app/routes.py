@@ -254,5 +254,6 @@ def viewQuestions():
         # format date?
         query = query + result
 
+
     
-    return render_template('viewQuestions.html', title='Search Questons', results = query)
+    return render_template('viewQuestions.html', title='Search Questons', results = query, pages = len(categoryIds), currentPage = page)

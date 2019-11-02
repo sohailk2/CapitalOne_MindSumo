@@ -8,9 +8,52 @@
 <!-- categories that are similar to searrch "insert search"
 up here add a drop down list that contains a list of all the different categorry that matched -->
 
+<script>
+
+function goToPage(page, element) {
+    
+    url = window.location.href;
+    newUrl = url.replace("page={{currentPage}}", "page=" + page);
+    element.href = newUrl;
+
+}
+
+</script>
+
+<br><br>
+<div id="outer">  
+        <div id="inner">
+
+                <nav aria-label="Page navigation example">
+                        <h4>Page: {{currentPage + 1}}</h4>
+                        <ul class="pagination">
+
+                            {% if not currentPage == 0 %}
+                                <li class="page-item"><a class="page-link" onclick="goToPage('{{currentPage - 1}}', this)" href="" >Previous</a></li>
+                            {% endif %}
+
+
+                          <li class="page-item"><a class="page-link" href="" onclick="goToPage('0', this)" >1</a></li>
+
+
+                          <!-- <li class="page-item"><a class="page-link" href="#">{{currentPage + 1}}</a></li> -->
+
+
+                          <li class="page-item"><a class="page-link" href="" onclick="goToPage('{{pages-1}}', this)">{{pages}}</a></li>
+
+                          {% if not currentPage + 1 == pages %}
+                          <li class="page-item"><a class="page-link" href="" onclick="goToPage('{{currentPage + 1}}', this)">Next</a></li>
+                            {% endif %}
+
+                        </ul>
+                      </nav>
+
+        </div>
+    </div>
+
+
 
 {% for question in results %}
-
         <div class="card" style="margin-left: 5%; margin-right: 5%; margin-bottom: 1%;">
             <div class="card-header">
                 
