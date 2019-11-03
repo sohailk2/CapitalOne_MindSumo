@@ -16,14 +16,14 @@ Link: http://mindsumo-jeopardy.herokuapp.com/
   * Search Through a Date Range
   * Pagination returns pages of matching queries
 
-* ### User Account System
+* #### User Account System
   * Allows User to Save Favorites From Question Search
   * Questions are linked and specfic to the user account
   * Register for new Accounts
  
 * #### Jeopardy Board
   * Full Board Game Simulation
-  * Allows User to Add Multiple Categories to Be Considerd For Game
+  * Allows User to Add Multiple Categories to Be Considered For Game
   * Finds Categories with Matching Titles and filters through valid game boards
   * Corresponding Point Values For the Question
   * Same Category Can Result in DIfferent Questions because it randomizes from searching the valid question for the point value
