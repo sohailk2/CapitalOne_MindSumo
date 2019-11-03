@@ -3,11 +3,11 @@
 {% block content %}
 
 <style>
-        body {
-            background-color: #41b3a3;
-            transition: background-color 0.5s ease;
-    
-        }
+    body {
+        background-color: #41b3a3;
+        transition: background-color 0.5s ease;
+
+    }
 </style>
 
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -21,14 +21,20 @@
 
     function addToCategoryList() {
 
-        toAdd = document.getElementById("toAddBox").value;
-        toAdd.trim();
+        if (categoriesAdded.length == 6) {
+            alert("Max Categories Reached");
+        } else {
+            toAdd = document.getElementById("toAddBox").value;
+            toAdd.trim();
 
-        if (categoriesAdded.includes(toAdd) == false && toAdd != "") {
-            categoriesAdded.push(toAdd);
-            document.getElementById("categoryList").innerHTML += listTemplate.replace("{}", toAdd);
-            document.getElementById("toAddBox").value = "";
+            if (categoriesAdded.includes(toAdd) == false && toAdd != "") {
+                categoriesAdded.push(toAdd);
+                document.getElementById("categoryList").innerHTML += listTemplate.replace("{}", toAdd);
+                document.getElementById("toAddBox").value = "";
+            }
         }
+
+
     }
 
     $(document).ready(function () {
@@ -61,7 +67,7 @@
             data = "";
 
             for (i = 0; i < categoriesAdded.length; i++) {
-                
+
                 data += '"';
                 data += categoriesAdded[i];
                 data += '"';
@@ -71,7 +77,7 @@
                 }
 
             }
-            
+
             url = url.replace("{}", data);
             window.open(url);
 
@@ -83,7 +89,7 @@
     }
 
     function randomBoard() {
-        window.open("{{ url_for('jeopardy', random = '') }}","_self");
+        window.open("{{ url_for('jeopardy', random = '') }}", "_self");
     }
 
 
