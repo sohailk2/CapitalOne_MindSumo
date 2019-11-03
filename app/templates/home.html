@@ -16,18 +16,18 @@
 
         if (nextPage == "search") {
 
-           
+
 
             document.body.style.backgroundColor = "#E8A87C";
 
-    
-    
-            $("#menu").fadeOut(duration = 200, queue=false, function() {
-                window.open("{{url_for("search")}}","_self")
+
+
+            $("#menu").fadeOut(duration = 200, queue = false, function () {
+                window.open("{{url_for("search")}}", "_self")
             });
         }
 
-        
+
 
     }
 
@@ -70,63 +70,111 @@
                     Browse Question Database
                 </div>
                 <div class="card-body">
-                    
-                    <h6 class="card-subtitle mb-2 text-muted">Instructions:</h6>
+
+                        <h5 class="card-title">Search over 18,000 Categories</h5>
+
+                    <h6 class="card-subtitle mb-2 text-muted">
+                       
+                        <ul>
+                            <li>
+                                Category Title
+                            </li>
+                            <li>
+                                Points Value
+                            </li>
+                            <li>
+                                Date Range
+                            </li>
+                            <li>
+                                Randomize
+                            </li>
+                        </ul>
+
+                        
+                    </h6>
                     <p class="card-text">
-aa
+
 
                     </p>
 
-                    <button type="button" onclick='pageAnimation("search");'
-                        class="btn btn-primary">Search</button>
+                    <button type="button" onclick='pageAnimation("search");' class="btn btn-primary">Search</button>
 
                 </div>
             </div>
 
         </div>
 
-        <div class="col-lg">
-                <div class="card">
-                        <div class="card-header">
-                                Play Jeopardy
-                        </div>
-                        <div class="card-body">
-                                <h5 class="card-title">Search Questions</h5>
-                                <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                                <p class="card-text">
-            
-                                   
-            
-                                </p>
-                                <button type="button" onclick='window.open("{{url_for("jeopardySetup")}}","_self")'
-                                    class="btn btn-primary">play</button>
-        
-                        </div>
-                    </div>
+        <div class="col-lg" style="padding-left-right: 10px;">
+            <div class="card" >
+                <div class="card-header">
+                    Play Jeopardy
+                </div>
 
-            
+                <div class="card-body">
+                    
+                        <h5 class="card-title">Setup Your Custom Jeopardy Game</h5>
+
+                        <h6 class="card-subtitle mb-2 text-muted">
+                           
+                            <ul>
+                                <li>
+                                    Add Categories To Game Board
+                                </li>
+                                <li>
+                                    Randomize Categories
+                                </li>
+                                <li>
+                                    Full Layout Simulation
+                                </li>
+                                <li>
+                                    Already Seen Clues automatically Disable
+                                </li>
+                            </ul>
+
+                        </h6>
+
+                    
+                    <button type="button" onclick='window.open("{{url_for("jeopardySetup")}}","_self")'
+                        class="btn btn-primary">Play</button>
+
+                        
+                </div>
+            </div>
+
+
         </div>
 
         <div class="col-sm">
 
-                <div class="card">
-                        <div class="card-header">
-                                View Favorites
-                        </div>
-                        <div class="card-body">
-                                <h5 class="card-title">View Favorites</h5>
-                                <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                                <p class="card-text">
-            
-            
-                                </p>
-                                <button type="button" onclick='window.open("{{url_for('viewFavorites')}}","_self")'
-                                    class="btn btn-primary">Search</button>
-        
-                        </div>
-                    </div>
+            <div class="card">
+                <div class="card-header">
+                    View Favorites
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">View Favorites</h5>
+                
+                    <h6 class="card-subtitle mb-2 text-muted">
+                           
+                            <ul>
+                                <li>
+                                    Browse Through Favorites
+                                </li>
+                                <li>
+                                    Specific to logged in User
+                                </li>
+                                <br>
+                                <br>
+                                
+                            </ul>
 
-            
+                        </h6>
+                    <button type="button" onclick='window.open("{{url_for('viewFavorites')}}","_self")'
+                        class="btn btn-primary">Search</button>
+
+                </div>
+            </div>
+
+
         </div>
     </div>
 </div>
