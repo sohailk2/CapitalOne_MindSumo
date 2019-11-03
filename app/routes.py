@@ -35,7 +35,7 @@ def login():
             user = User.query.filter_by(username=request.form.get('username')).first()
 
             if user is None or not user.check_password(request.form.get('password')):
-                flash('Invalid username or password')
+                flash('Invalid username or password (Default Username: user, Default Password: password)')
                 return redirect(url_for('login'))
             login_user(user)
             return redirect(url_for('home'))
