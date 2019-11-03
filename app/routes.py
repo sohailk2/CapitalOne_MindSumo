@@ -87,7 +87,7 @@ def search():
             
 
 
-        return redirect(url_for('viewQuestions', category = category, value=points))
+        return redirect(url_for('viewQuestions', page = 0, category = category, value=points))
 
 
     return render_template('search.html', title='Search')

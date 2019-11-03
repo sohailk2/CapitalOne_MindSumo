@@ -13,7 +13,7 @@
 <script>
 
     function randomQuestion() {
-        window.open("{{ url_for('viewQuestions', random = '') }}","_self");
+        window.open("{{ url_for('viewQuestions', page = '0', random = '') }}","_self");
     }
 
 </script>
