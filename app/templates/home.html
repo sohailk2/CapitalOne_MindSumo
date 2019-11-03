@@ -15,16 +15,29 @@
     function pageAnimation(nextPage) {
 
         if (nextPage == "search") {
-
-
-
             document.body.style.backgroundColor = "#E8A87C";
-
-
 
             $("#menu").fadeOut(duration = 200, queue = false, function () {
                 window.open("{{url_for("search")}}", "_self")
             });
+        }
+
+        if (nextPage == "play") {
+            document.body.style.backgroundColor = "#41b3a3";
+
+            $("#menu").fadeOut(duration = 200, queue = false, function () {
+                window.open("{{url_for("jeopardySetup")}}","_self");
+            });
+        }
+
+        if (nextPage == "fav") {
+
+            document.body.style.backgroundColor = "#C38D9E";
+
+            $("#menu").fadeOut(duration = 200, queue = false, function () {
+                window.open("{{url_for('viewFavorites')}}","_self")
+            });
+
         }
 
 
@@ -71,10 +84,10 @@
                 </div>
                 <div class="card-body">
 
-                        <h5 class="card-title">Search over 18,000 Categories</h5>
+                    <h5 class="card-title">Search over 18,000 Categories</h5>
 
                     <h6 class="card-subtitle mb-2 text-muted">
-                       
+
                         <ul>
                             <li>
                                 Category Title
@@ -90,7 +103,7 @@
                             </li>
                         </ul>
 
-                        
+
                     </h6>
                     <p class="card-text">
 
@@ -105,39 +118,40 @@
         </div>
 
         <div class="col-lg" style="padding-left-right: 10px;">
-            <div class="card" >
+            <div class="card">
                 <div class="card-header">
                     Play Jeopardy
                 </div>
 
                 <div class="card-body">
-                    
-                        <h5 class="card-title">Setup Your Custom Jeopardy Game</h5>
 
-                        <h6 class="card-subtitle mb-2 text-muted">
-                           
-                            <ul>
-                                <li>
-                                    Add Categories To Game Board
-                                </li>
-                                <li>
-                                    Randomize Categories
-                                </li>
-                                <li>
-                                    Full Layout Simulation
-                                </li>
-                                <li>
-                                    Already Seen Clues automatically Disable
-                                </li>
-                            </ul>
+                    <h5 class="card-title">Setup Your Custom Jeopardy Game</h5>
 
-                        </h6>
+                    <h6 class="card-subtitle mb-2 text-muted">
 
-                    
-                    <button type="button" onclick='window.open("{{url_for("jeopardySetup")}}","_self")'
+                        <ul>
+                            <li>
+                                Add Categories To Game Board
+                            </li>
+                            <li>
+                                Randomize Categories
+                            </li>
+                            <li>
+                                Full Layout Simulation
+                            </li>
+                            <li>
+                                Already Seen Clues automatically Disable
+                            </li>
+                        </ul>
+
+                    </h6>
+
+
+                    <button type="button" onclick='pageAnimation("play");'
+                        
                         class="btn btn-primary">Play</button>
 
-                        
+
                 </div>
             </div>
 
@@ -152,23 +166,23 @@
                 </div>
                 <div class="card-body">
                     <h5 class="card-title">View Favorites</h5>
-                
-                    <h6 class="card-subtitle mb-2 text-muted">
-                           
-                            <ul>
-                                <li>
-                                    Browse Through Favorites
-                                </li>
-                                <li>
-                                    Specific to logged in User
-                                </li>
-                                <br>
-                                <br>
-                                
-                            </ul>
 
-                        </h6>
-                    <button type="button" onclick='window.open("{{url_for('viewFavorites')}}","_self")'
+                    <h6 class="card-subtitle mb-2 text-muted">
+
+                        <ul>
+                            <li>
+                                Browse Through Favorites
+                            </li>
+                            <li>
+                                Specific to logged in User
+                            </li>
+                            <br>
+                            <br>
+
+                        </ul>
+
+                    </h6>
+                    <button type="button" onclick='pageAnimation("fav");'
                         class="btn btn-primary">Search</button>
 
                 </div>
