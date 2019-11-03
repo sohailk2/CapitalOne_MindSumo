@@ -19,6 +19,11 @@ function generateModal(category, points, airdate, clue, answer) {
 
 }
 
+function resetAnswer() {
+    document.getElementById("answerCard").style.display = "none";
+
+}
+
 </script>
 
 
@@ -53,7 +58,7 @@ function generateModal(category, points, airdate, clue, answer) {
                     <!-- {{(n + 1) * 200}}
 
                 </div> -->
-                <button type="button" onclick="generateModal( `{{questionSet[0]['category']['title']}}`, {{(n + 1) * 200}} , `{{questionSet[n]['airdate']}}` ,`{{questionSet[n]['question']}}`,`{{questionSet[n]['answer']}}`)" class="btn btn-primary" style="font-size: 300%; padding-top:1.5%; padding-bottom:1.5%; padding-left:5%; padding-right: 5%;">{{(n + 1) * 200}}</button>
+                <button type="button" onclick="this.disabled = true; generateModal( `{{questionSet[0]['category']['title']}}`, {{(n + 1) * 200}} , `{{questionSet[n]['airdate']}}` ,`{{questionSet[n]['question']}}`,`{{questionSet[n]['answer']}}`)" class="btn btn-primary" style="font-size: 300%; padding-top:1.5%; padding-bottom:1.5%; padding-left:5%; padding-right: 5%;">{{(n + 1) * 200}}</button>
 
             </td>
             {% else %}{% endif %}
@@ -91,7 +96,7 @@ function generateModal(category, points, airdate, clue, answer) {
 
                 </h2>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span>
+                    <span aria-hidden="true" onclick="resetAnswer();">×</span>
                 </button>
             </div>
             <div class="modal-body" id="result">
@@ -122,7 +127,7 @@ function generateModal(category, points, airdate, clue, answer) {
 
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">OK</button>
+                <button type="button" class="btn btn-secondary" onclick="resetAnswer();" data-dismiss="modal">OK</button>
             </div>
         </div>
     </div>
@@ -133,6 +138,11 @@ function generateModal(category, points, airdate, clue, answer) {
         //document.getElementById("openModal").click();
     });
 
+    $(document).keyup(function(e) {
+        if (e.keyCode === 27) {
+            resetAnswer();
+        }   
+    });
     
 </script>
 
